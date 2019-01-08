@@ -1,4 +1,4 @@
-package com.example.database;
+package com.example.springboot.database;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <maven.test.skip>true</maven.test.skip>
 
         <demo.version>0.0.1-SNAPSHOT</demo.version>
     </properties>
@@ -60,6 +61,15 @@
     <modules>
         <module>distribute-demo</module>
         <module>reflect-demo</module>
+        <module>concurrent-demo</module>
+        <module>design-pattern</module>
+        <module>exception-demo</module>
+        <module>io-demo</module>
+        <module>java8-demo</module>
+        <module>mybatis-demo</module>
+        <module>other-test</module>
+        <module>pool-demo</module>
+        <module>springboot-demo</module>
     </modules>
 
     <build>

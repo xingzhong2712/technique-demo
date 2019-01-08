@@ -1,4 +1,4 @@
-package com.example.database.module;
+package com.example.springboot.database.module;
 
 import lombok.Getter;
 import lombok.Setter;
