@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class TestRedis {
+	
 	@Resource
 	RedisTemplate redisTemplate;
 	
@@ -45,12 +46,14 @@ public class TestRedis {
 		strings[1] = String.valueOf(Instant.now().toEpochMilli() + ++i);
 		strings[2] = String.valueOf(Instant.now().toEpochMilli() + ++i);
 		redisTemplate.opsForList().leftPushAll(key, strings);
+		redisTemplate.expire(key, 10, TimeUnit.SECONDS);
 		key = UUID.randomUUID().toString().replaceAll("-", "");
 		redisTemplate.opsForSet().add(key, strings);
 		redisTemplate.expire(key, 10, TimeUnit.SECONDS);
 		
 		System.out.println("expire time is " + redisTemplate.getExpire(key));
-//		redisTemplate.opsForHash().putAll(key, map);
+		key = UUID.randomUUID().toString().replaceAll("-", "");
+		redisTemplate.opsForHash().putAll(key, map);
 	}
 	
 }
