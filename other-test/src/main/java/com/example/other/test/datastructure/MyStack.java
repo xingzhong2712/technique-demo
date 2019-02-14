@@ -22,13 +22,21 @@ public class MyStack {
 	/**
 	 * 压栈
 	 *
-	 * @param element	入栈元素
+	 * @param element 入栈元素
 	 */
 	public void push(int element) {
 		int[] newArray = new int[length() + 1];
 		for (int i = 0; i < length(); i++) {
 			newArray[i] = elements[i];
 		}
+		
+		newArray[elements.length] = element;
+		elements = newArray;
+	}
+	
+	public void push2(int element) {
+		int[] newArray = new int[length() + 1];
+		System.arraycopy(elements, 0, newArray, 0, length());
 		
 		newArray[elements.length] = element;
 		elements = newArray;
@@ -48,6 +56,18 @@ public class MyStack {
 		for (int i = 0; i < length() - 1; i++) {
 			newArray[i] = elements[i];
 		}
+		int element = elements[length() - 1];
+		elements = newArray;
+		return element;
+	}
+	
+	public int pop2() {
+		if (empty()) {
+			return 0;
+		}
+		
+		int[] newArray = new int[length() - 1];
+		System.arraycopy(elements, 0, newArray, 0, newArray.length);
 		int element = elements[length() - 1];
 		elements = newArray;
 		return element;
