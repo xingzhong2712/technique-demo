@@ -18,7 +18,8 @@ public class Sorts {
 		System.out.println("排序前：" + Arrays.toString(arr));
 //		bubble(arr);
 //		quick(arr, 0, arr.length - 1);
-		quick2(arr, 0, arr.length - 1);
+//		quick2(arr, 0, arr.length - 1);
+		directInsert(arr);
 		System.out.println("排序后：" + Arrays.toString(arr));
 	}
 	
@@ -130,6 +131,32 @@ public class Sorts {
 		quick(arr, beginIndex, end);
 		// 处理大的数字
 		quick(arr, begin + 1, endIndex);
+	}
+	
+	/**
+	 * 直接排序：当前值和其后的每一个值比较，小的交换位置
+	 *
+	 * @param arr	待排序数组
+	 */
+	private static void directInsert(int[] arr) {
+		for (int i = 1; i < arr.length; i++) {
+			for (int j = i; j > 0; j--) {
+				if (arr[j] < arr[j - 1]) {
+					int tmp    = arr[j - 1];
+					arr[j - 1] = arr[j];
+					arr[j] 	   = tmp;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 希尔排序
+	 *
+	 * @param arr	待排序数组
+	 */
+	private static void shell(int[] arr) {
+	
 	}
 	
 }
