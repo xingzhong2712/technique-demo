@@ -13,10 +13,12 @@ import java.util.Arrays;
 public class Sorts {
 	
 	public static void main(String[] args) {
-		int[] arr = new int[]{4, 9, 0, 6, 5, 1, 2, 7, 3, 8, 2};
+		int[] arr = new int[]{4, 9, 0, 6, 5, 1, 2, 7, 3, 8, 2, 4};
+//		arr = new int[]{4, 4, 8, 8, 4, 4, 8, 8, 8, 8, 8, 4};
 		System.out.println("排序前：" + Arrays.toString(arr));
 //		bubble(arr);
-		quick(arr, 0, arr.length - 1);
+//		quick(arr, 0, arr.length - 1);
+		quick2(arr, 0, arr.length - 1);
 		System.out.println("排序后：" + Arrays.toString(arr));
 	}
 	
@@ -42,7 +44,7 @@ public class Sorts {
 	}
 	
 	/**
-	 * 快速排序（挖坑法）：refer为坑
+	 * 快速排序（挖坑法）：
 	 *
 	 * @param arr        待排序数组
 	 * @param beginIndex 开始的位置
@@ -77,6 +79,52 @@ public class Sorts {
 		
 		// 将基准值赋给结束位置
 		arr[begin] = refer;
+		
+		// 处理小的数字
+		quick(arr, beginIndex, end);
+		// 处理大的数字
+		quick(arr, begin + 1, endIndex);
+	}
+	
+	/**
+	 * 快速排序（左右指针法）：
+	 *
+	 * @param arr        待排序数组
+	 * @param beginIndex 开始的位置
+	 * @param endIndex   结束的位置
+	 */
+	private static void quick2(int[] arr, int beginIndex, int endIndex) {
+		if (beginIndex >= endIndex) {
+			return;
+		}
+		
+		// 开始的位置
+		int begin = beginIndex;
+		// 结束的位置
+		int end   = endIndex;
+		// 基准值
+		int refer = arr[beginIndex];
+		
+		while (begin < end) {
+			// 从右侧开始比较，如果当前值比基准值大，则一直遍历，直到找到一个小的数
+			while (begin < end && refer <= arr[end]) {
+				end--;
+			}
+			// 从左侧开始比较，如果当前值比基准值小，则一直遍历，直到找到一个大的数
+			while (begin < end && refer >= arr[begin]) {
+				begin++;
+			}
+			
+			if (begin < end) {
+				int tmp    = arr[begin];
+				arr[begin] = arr[end];
+				arr[end]   = tmp;
+			}
+		}
+		
+		// 将基准值赋给结束位置
+//		arr[beginIndex] = arr[begin];
+//		arr[begin] 		= refer;
 		
 		// 处理小的数字
 		quick(arr, beginIndex, end);
